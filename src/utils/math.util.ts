@@ -1,3 +1,5 @@
+import {Shapes} from '../enums/shapes.enum';
+
 export function calculateSum(...args: number[]): number {
   // No refactoring:
   //   if (a === undefined) {
@@ -16,4 +18,19 @@ export function calculateSum(...args: number[]): number {
 
   // Final refactoring:
   return args.reduce((sum, val) => sum + val, 0);
+};
+
+export function calculateArea(shape: Shapes, ...dimensions: number[]): number {
+  switch (shape) {
+    case Shapes.Circle:
+      return Math.PI * Math.pow(dimensions[0], 2);
+    case Shapes.Square:
+      return Math.pow(dimensions[0], 2);
+    case Shapes.Rectangle:
+      return dimensions[0] * dimensions[1];
+    case Shapes.Triangle:
+      return dimensions[0] * dimensions[1] / 2;
+    default:
+      throw new Error('Invalid shape');
+  }
 };

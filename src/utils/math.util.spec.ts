@@ -1,4 +1,5 @@
-import {calculateSum} from './math.util';
+import {Shapes} from '../enums/shapes.enum';
+import {calculateSum, calculateArea} from './math.util';
 
 describe('MathUtil', () => {
   describe('calculateSum', () => {
@@ -24,6 +25,28 @@ describe('MathUtil', () => {
 
     it('should return the sum of five numbers', () => {
       expect(calculateSum(5, 5, 5, 5, 5)).toBe(25);
+    });
+  });
+
+  describe('calculateArea', () => {
+    it('should return the area of a circle', () => {
+      expect(calculateArea(Shapes.Circle, 5)).toBeCloseTo(78.54, 2);
+    });
+
+    it('should return the area of a square', () => {
+      expect(calculateArea(Shapes.Square, 5)).toBe(25);
+    });
+
+    it('should return the area of a rectangle', () => {
+      expect(calculateArea(Shapes.Rectangle, 5, 5)).toBe(25);
+    });
+
+    it('should return the area of a triangle', () => {
+      expect(calculateArea(Shapes.Triangle, 5, 5)).toBe(12.5);
+    });
+
+    it('should throw an error for an invalid shape', () => {
+      expect(() => calculateArea('INVALID' as Shapes, 5)).toThrowError('Invalid shape');
     });
   });
 });
